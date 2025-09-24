@@ -18,23 +18,18 @@ function App() {
   const [viewCount, setViewCount] = useState(3242);
   const [showOverlay, setShowOverlay] = useState(true);
   const [entered, setEntered] = useState(false);
-  const [videoSrc, setVideoSrc] = useState(videoDesktop);
 
-  // Typewriter (slower + 2s pause at end, then erase and repeat)
+  // Typewriter config
   const BIO_TEXT = 'Модератор whiterise';
-  const TYPE_SPEED = 120;   // ms per step (slower typing)
-  const PAUSE_END = 2000;   // ms to keep full text before erasing
+  const TYPE_SPEED = 120;
+  const PAUSE_END = 2000;
   const [bioIndex, setBioIndex] = useState(0);
-  const [direction, setDirection] = useState(1); // 1 = typing, -1 = deleting
+  const [direction, setDirection] = useState(1);
   const [bio, setBio] = useState('');
 
   const videoRef = useRef(null);
 
-  useEffect(() => {
-    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 768;
-    setVideoSrc(isMobile ? videoMobile : videoDesktop);
-  }, []);
-
+  // Fetch views
   useEffect(() => {
     fetch('/increment-view')
       .then(response => response.json())
@@ -45,7 +40,6 @@ function App() {
   // Typewriter loop
   useEffect(() => {
     let t;
-    // clamp & render by slice (чтобы не дергалось)
     const safeIndex = Math.max(0, Math.min(BIO_TEXT.length, bioIndex));
     setBio(BIO_TEXT.slice(0, safeIndex));
 
@@ -65,17 +59,18 @@ function App() {
     setEntered(true);
     const vid = videoRef.current;
     if (vid) {
-      vid.muted = false; // включаем звук после клика
+      vid.muted = false;
       vid.play().catch(() => {});
     }
   };
 
   return (
     <div className='app-container'>
-      {/* Важно: без autoPlay — видео не стартует до клика */}
+      {/* Видео: браузер загрузит только один <source>, подходящий по media */}
       <video ref={videoRef} loop muted playsInline className='video-background'>
-        <source src={videoSrc} type='video/mp4' />
-        Your browser does not support the video tag.
+        <source src={videoDesktop} media="(min-width: 768px)" type="video/mp4" />
+        <source src={videoMobile} media="(max-width: 767px)" type="video/mp4" />
+        Ваш браузер не поддерживает тег video.
       </video>
 
       {showOverlay && (
@@ -85,7 +80,6 @@ function App() {
       )}
 
       <div className={`main-container ${entered ? 'entered' : ''}`}>
-        {/* Просмотры: выровнены по центру по вертикали */}
         <div className='views'>
           <img src={view} className='view' alt='View Icon' />
           <span className='num'>{viewCount}</span>
