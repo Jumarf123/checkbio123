@@ -1,0 +1,19 @@
+# Netlify config for a Vite + React SPA
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[build.environment]
+  # Vite 7 requires Node.js 20.19+ or 22.12+; pick one available in Netlify's image.
+  NODE_VERSION = "22.12.0"
+
+# SPA fallback so React Router deep links work on reload
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# If you move any server logic into Netlify Functions, keep them here
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
