@@ -15,7 +15,7 @@ import videoMobile from './videos/telefon.mp4';
 import videoDesktop from './videos/comp.mp4';
 
 function App() {
-  const [viewCount, setViewCount] = useState(3242);
+  const [viewCount, setViewCount] = useState(1488);
   const [showOverlay, setShowOverlay] = useState(true);
   const [entered, setEntered] = useState(false);
 
