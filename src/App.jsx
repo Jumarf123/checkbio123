@@ -75,7 +75,7 @@ function App() {
 
       {showOverlay && (
         <div className='overlay' onClick={handleOverlayClick}>
-          <p className='click'>Continue?</p>
+          <p className='click'>Нажми, что бы продолжить</p>
         </div>
       )}
 
