@@ -20,7 +20,7 @@ function App() {
   const [entered, setEntered] = useState(false);
 
   // Typewriter config
-  const BIO_TEXT = 'Модератор whiterise';
+  const BIO_TEXT = 'Меньше чем три<3';
   const TYPE_SPEED = 120;
   const PAUSE_END = 2000;
   const [bioIndex, setBioIndex] = useState(0);
@@ -122,7 +122,7 @@ function App() {
           target='_blank'
           rel='noopener noreferrer'
         >
-          Лучшее Аниме
+          Best Anime
         </a>
 
         <a
@@ -131,7 +131,7 @@ function App() {
           target='_blank'
           rel='noopener noreferrer'
         >
-          Лучшее Donghua
+          Best Donghua
         </a>
 
         <div className='div2'></div>
