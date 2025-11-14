@@ -1,10 +1,5 @@
 
 
-![Preview](https://jumarf.ru/preview.png)
-
-
-
-
 - **Основной сайт**: [https://jumarf.ru](https://jumarf.ru)
 - **Резервный**: [https://jumarf.fun](https://jumarf.fun)
 - **GitHub**: [https://Jumarf123.github.io/checkbio123](https://Jumarf123.github.io/checkbio123)
