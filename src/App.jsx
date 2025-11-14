@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 // Images
-import pfp from './images/pfp1-optimized.mp4';
+import pfp from './images/pfp1-original.mp4';
 import view from './images/viewW.svg';
 import discord from './images/discord.png';
 import telegram from './images/telegram.png';

@@ -251,6 +251,8 @@ body {
 
 .profile-avatar {
   position: relative;
+  width: clamp(120px, 18vw, 160px);
+  height: clamp(120px, 18vw, 160px);
 }
 
 .pfp {
@@ -260,10 +262,20 @@ body {
   object-fit: cover;
   border: 3px solid transparent;
   background: linear-gradient(135deg, var(--accent-color), var(--accent-hover)) border-box;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: subtract;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: subtract;
   box-shadow: var(--shadow-lg);
   transition: var(--transition);
+  display: block;
+}
+
+/* Special fix for video elements */
+video.pfp {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .pfp:hover {
