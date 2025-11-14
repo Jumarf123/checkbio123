@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 // Images
-import pfp from './images/pfp1.gif';
+import pfp from './images/pfp1-optimized.mp4';
 import view from './images/viewW.svg';
 import discord from './images/discord.png';
 import telegram from './images/telegram.png';
@@ -203,7 +203,15 @@ function App() {
         <section className='profile-section'>
           <div className='profile-card'>
             <div className='profile-avatar'>
-              <img src={pfp} className='pfp' alt='Profile Picture' />
+              <video 
+                src={pfp} 
+                className='pfp' 
+                alt='Profile Picture' 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+              />
             </div>
             <div className='profile-info'>
               <h1 className='profile-name'>Jumarf</h1>
