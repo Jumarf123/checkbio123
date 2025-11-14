@@ -32,6 +32,28 @@ function App() {
   const [typingComplete, setTypingComplete] = useState(false);
 
   const videoRef = useRef(null);
+  const [videoPreloaded, setVideoPreloaded] = useState(false);
+
+  // Preload background video
+  useEffect(() => {
+    const videoSrc = isMobile ? videoMobile : videoDesktop;
+    const video = document.createElement('video');
+    video.src = videoSrc;
+    video.preload = 'auto';
+    video.muted = true;
+    
+    video.onloadeddata = () => {
+      setVideoPreloaded(true);
+      if (videoRef.current && videoRef.current.src !== videoSrc) {
+        videoRef.current.src = videoSrc;
+        videoRef.current.load();
+      }
+    };
+    
+    return () => {
+      video.onloadeddata = null;
+    };
+  }, [isMobile, videoMobile, videoDesktop]);
 
   // Detect mobile
   useEffect(() => {
@@ -284,9 +306,10 @@ function App() {
       </div>
 
       {/* Video Player (bottom-left corner) */}
-      <div
-        className={`video-player ${entered ? 'visible' : 'hidden'} ${isVideoMinimized ? 'minimized' : ''} ${isMobile ? 'mobile' : ''}`}
-      >
+      {videoPreloaded && (
+        <div
+          className={`video-player ${entered ? 'visible' : 'hidden'} ${isVideoMinimized ? 'minimized' : ''} ${isMobile ? 'mobile' : ''}`}
+        >
           <div className='video-controls'>
             <button className='control-btn' onClick={toggleMute} title={videoMuted ? 'Включить звук' : 'Выключить звук'}>
               {videoMuted ? (
@@ -350,7 +373,8 @@ function App() {
             <source src={isMobile ? videoMobile : videoDesktop} type="video/mp4" />
             Ваш браузер не поддерживает тег video.
           </video>
-      </div>
+        </div>
+      )}
     </div>
   );
 }
