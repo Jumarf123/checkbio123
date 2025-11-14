@@ -11,8 +11,8 @@ import animedia from './images/animedia.png';
 import yandex from './images/yandex.png';
 
 // Videos
-import videoMobile from './videos/telefon.mp4';
-import videoDesktop from './videos/comp.mp4';
+import videoMobile from './videos/telefon-small.mp4';
+import videoDesktop from './videos/comp-small.mp4';
 
 function App() {
   const [viewCount, setViewCount] = useState(0);
